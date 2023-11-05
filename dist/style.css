@@ -1,0 +1,349 @@
+/* style.css */
+:root {
+    --clr-blue: rgb(52, 52, 216);
+    --clr-light: lightgray;
+    --clr-dark: darkgray;
+}
+
+*,
+*::before,
+*::after {
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 1em;
+    font-family: sans-serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    background-color: var(--clr-light);
+    color: var(--clr-light);
+
+    display: grid;
+    grid:
+      "header header header header" auto
+      "nav . active ." auto /
+      300px minmax(1px, 1fr) minmax(500px, 1000px) 1fr;
+}
+
+.title-header {
+    background-color: rgb(37, 34, 34);
+    grid-area: header;
+    padding: 20px;
+}
+
+.title {
+    font-weight: 900; 
+    color: white;
+}
+
+.nav {
+    grid-area: nav;
+    padding-left: 30px;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    background-color: var(--clr-light);
+    color: white;
+    border: 2px solid var(--clr-dark);
+    border-top: none;
+    position: relative;
+    padding: 5px;
+}
+
+.nav-project-header {
+    background-color: var(--clr-dark);
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 10px 0px;
+    margin-top: 25px;
+}
+
+h2.projects-title {
+    margin: 0 0 0 25px;
+}
+
+.project-name {
+    cursor: pointer;
+}
+
+.project-name:hover {
+    opacity: 0.7;
+}
+
+.project-list {
+    margin-top: 125px;
+}
+
+.btn {
+    cursor: pointer;
+    background: 0;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    opacity: 0.7;
+    background-color: var(--clr-dark);
+    color: var(--clr-blue);
+}
+
+.new {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid currentColor;
+    padding: 0.25em;
+    color: inherit;
+    font-size: inherit;
+}
+
+.new.project {
+    font-size: 1.1rem;
+}
+
+.new:focus::placeholder {
+    opacity: 0.2;
+}
+
+.active-project {
+    font-weight: 700;
+}
+
+.todo-list {
+    grid-area: active;
+    background: var(--clr-light);
+    color: var(--clr-dark);
+    min-width: 560px;
+}
+
+.todo-header {
+    background-color: var(--clr-dark);
+    padding: 2rem;
+}
+
+.todo-title {
+    margin: 0;
+    color: white;
+}
+
+.todo-body {
+    padding: 2rem;
+    background-color: var(--clr-light);
+    position: relative;
+    border: 2px solid var(--clr-dark);
+    color: white;
+}
+
+.task-form {
+    background-color: var(--clr-dark);
+    padding: 10px;
+    margin: 5px 0px 25px 0px;
+}
+
+.task-form label {
+    font-size: 1.2rem;
+    display: block;
+    margin: 0px 0px 2px 0px;
+}
+
+.task-form .todo-input {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 8px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2px;
+}
+
+.submit-button,
+.cancel-button:hover {
+    cursor: pointer;
+}
+
+.task label {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    grid-column: 1 / 2;
+}
+
+.task {
+    position: relative;
+    margin-bottom: 1.25em;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr minmax(15px, 1fr) 80px 40px 21px 21px 21px;
+}
+
+.task::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: -0.5em;
+    height: 1px;
+    background-color: black;
+    opacity: 0.3;
+}
+
+.details-button {
+    cursor: pointer;
+    grid-column: 3 / 4;
+}
+
+.edit-task-button {
+    cursor: pointer;
+    grid-column: 5 / 6;
+    grid-row: 1 / 1;
+}
+
+.delete-task-button {
+    cursor: pointer;
+    grid-column: 7 / 8;
+    grid-row: 1 / 1;
+}
+
+[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+.custom-checkbox {
+    --size: 0.75em;
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    margin-right: var(--size);
+    cursor: pointer;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    transform: scale(1);
+    transition: transform 300ms ease-in-out;
+}
+
+.task:hover .custom-checkbox,     
+[type="checkbox"]:focus + label .custom-checkbox {
+    transform: scale(1.2);
+    color: var(--clr-dark);
+}
+
+[type="checkbox"]:checked + label .custom-checkbox {
+    background: var(--clr-blue);
+    border-color: var(--clr-blue);
+}
+
+[type="checkbox"]:checked + label {
+    opacity: 0.5;
+}
+
+.task label::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: 1.5em;
+    height: 3px;
+    background-color: black;
+    transform: scaleX(0);
+    transition: transform 150ms ease-in-out;
+    transform-origin: left;
+}
+
+[type="checkbox"]:checked + label::after {
+    transform: scaleX(1);
+}
+
+/* Removes underline for the create task button */
+.btn.task::after {
+    display: none;
+}
+
+.todo-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 10px;
+    color: var(--clr-light);
+    font-size: 1rem;
+    opacity: 0.7;
+    transition: color 200ms;
+    margin-top: 20px;
+}
+
+.todo-buttons .btn {
+    padding: 5px 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* pop-up */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+}
+  
+.popup.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+  
+.popup-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+  
+.popup-header .popup-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+  
+.popup-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+  
+.popup-body {
+    padding: 10px 15px;
+}
+  
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    pointer-events: none;
+}
+  
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}

@@ -1,0 +1,114 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/824c03d6ea.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="title-header">
+        <h1 class="title">To-Do List</h1>
+    </div>
+
+    <div class="nav">
+        <!-- Time-based to-do lists -->
+        <ul class="time-lists">
+            <li class="project-name">All/Home</li>
+            <li class="project-name">Today</li>
+            <li class="project-name">This Week</li>
+        </ul>
+
+        <h2 class="projects-title">Projects</h2>
+        <ul class="project-list" data-lists></ul>
+
+        <form action="" data-new-project-form>
+            <input
+                type="text"
+                class="new project"
+                data-new-project-input
+                placeholder="new project name..."
+                aria-label="new project name"
+            />
+            <button class="btn list">+</button>
+        </form>
+    </div>
+
+    <div class="todo-list" data-project-display-container>
+        <div class="todo-header">
+            <h2 class="todo-title" data-project-title>Coding</h2>
+        </div>
+        <div class="todo-body">
+            <div class="tasks" data-tasks></div>
+            <div class="new-task-creator">
+                <!-- add new task form, hidden -->
+                <form id="task-form" class="hidden task-form" autocomplete="off">
+                     <div class="input-field">
+                        <label>Title:</label>
+                        <input class="todo-input" type="text" id="todo-input" placeholder="To-do...">
+                        <label>Details(optional):</label>
+                        <textarea class="todo-input" type="text" id="todo-input-details" placeholder="Task details..." wrap="hard"></textarea>
+                        <!-- <label>Date:</label>
+                        <input type="date" id="listInputDate" > -->
+                        <div class="form-buttons">
+                            <input type="submit" class="submit-button" value="Add" data-submit-task-btn>
+                            <input type="button" class="cancel-button" value="Cancel" data-cancel-task-btn>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="task-editer">
+                <!-- edit task form, hidden -->
+                <form id="edit-task-form" class="hidden task-form" autocomplete="off">
+                     <div class="input-field">
+                        <label>Title:</label>
+                        <input data-edit-title-input class="todo-input" type="text" id="todo-input" placeholder="To-do...">
+                        <label>Details(optional):</label>
+                        <textarea data-edit-details-input class="todo-input" type="text" id="todo-input-details" placeholder="Task details..." wrap="hard"></textarea>
+                        <!-- <label>Date:</label>
+                        <input type="date" id="listInputDate" > -->
+                        <div class="form-buttons">
+                            <input type="submit" class="submit-button" value="Add" data-submit-edit-task-btn>
+                            <input type="button" class="cancel-button" value="Cancel" data-cancel-edit-task-btn>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="todo-buttons">
+                <button class="btn" data-new-task-button>Add new task</button>
+                <button class="btn" data-clear-comepleted-tasks-button>Clear completed tasks</button>
+                <button class="btn" data-delete-list-button>Delete project</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-header">
+            <div data-popup-title class="popup-title"></div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div data-popup-body class="popup-body"></div>
+    </div>
+    <div id="overlay"></div>
+
+    <template id="task-template">
+        <div class="task">
+            <input type="checkbox">
+            <label>
+                <span class="custom-checkbox"></span>
+            </label>
+            <button class="details-button" data-popup-target="#popup">Details</button>
+            <label>
+                <div data-details-space class="details-space"></div>
+            </label>
+            <i data-edit-task-button class="fa-regular fa-pen-to-square edit-task-button" style="color: #000000;"></i>
+            <i data-delete-task-button class="fa-regular fa-trash-can delete-task-button" style="color: #000000;"></i>
+        </div>
+    </template>
+    
+    <script src="main.js" type="module"></script>
+</body>
+</html>

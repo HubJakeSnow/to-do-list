@@ -24,13 +24,14 @@ body {
     grid:
       "header header header header" auto
       "nav . active ." auto /
-      300px minmax(1px, 1fr) minmax(500px, 1000px) 1fr;
+      300px minmax(1px, 1fr) minmax(500px, 1000px) minmax(0px, 1fr);
 }
 
 .title-header {
     background-color: rgb(37, 34, 34);
     grid-area: header;
     padding: 20px;
+    min-width: 1004px;
 }
 
 .title {
@@ -119,6 +120,7 @@ h2.projects-title {
 .todo-header {
     background-color: var(--clr-dark);
     padding: 2rem;
+    min-width: 703px;
 }
 
 .todo-title {
@@ -132,6 +134,7 @@ h2.projects-title {
     position: relative;
     border: 2px solid var(--clr-dark);
     color: white;
+    min-width: 703px;
 }
 
 .task-form {
@@ -150,6 +153,10 @@ h2.projects-title {
     width: 100%;
     padding: 5px;
     margin-bottom: 8px;
+}
+
+.task-form textarea {
+    min-height: 70px;
 }
 
 .form-buttons {
@@ -299,6 +306,7 @@ h2.projects-title {
     background-color: white;
     width: 500px;
     max-width: 80%;
+    color: black;
 }
   
 .popup.active {
@@ -313,11 +321,6 @@ h2.projects-title {
     border-bottom: 1px solid black;
 }
   
-.popup-header .popup-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-}
-  
 .popup-header .close-button {
     cursor: pointer;
     border: none;
@@ -326,9 +329,21 @@ h2.projects-title {
     font-size: 1.25rem;
     font-weight: bold;
 }
+
+.popup-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
   
 .popup-body {
     padding: 10px 15px;
+    font-size: 1.25rem;
+}
+
+.popup-date {
+    border-top: 1px solid black;
+    padding: 10px 15px;
+    font-size: 1.25rem;
 }
   
 #overlay {
@@ -339,7 +354,7 @@ h2.projects-title {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, 0.75);
     pointer-events: none;
 }
   

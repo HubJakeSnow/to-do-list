@@ -24,28 +24,27 @@ export function editTaskFormFunction() {
             button.addEventListener('click', () => {
                 hideTaskForm()
 
+                const task = button.closest('.task')
+                const detailsDiv = task.querySelector('[data-details-space]')
+                const body = detailsDiv.textContent
+                const detailsInput = document.querySelector('[data-edit-details-input]')
 
-                const task = button.closest('.task');
-                const detailsDiv = task.querySelector('[data-details-space]');
-                const body = detailsDiv.textContent;
-                const detailsInput = document.querySelector('[data-edit-details-input]');
-
-                const taskTitle = task.querySelector('label').textContent.trim();
-                const titleInput = document.querySelector('[data-edit-title-input]');
+                const taskTitle = task.querySelector('label').textContent.trim()
+                const titleInput = document.querySelector('[data-edit-title-input]')
 
                 // Get the task's date and set it in the date input field
                 const dateDiv = task.querySelector('[data-date-space]')
                 const date = dateDiv.textContent
-                const dateInput = document.querySelector('[data-edit-date-input]');
-                dateInput.value = date;
+                const dateInput = document.querySelector('[data-edit-date-input]')
+                dateInput.value = date
 
-                titleInput.value = taskTitle;
-                detailsInput.value = body;
+                titleInput.value = taskTitle
+                detailsInput.value = body
 
-                oldTask = task;
-            });
-        });
-    });
+                oldTask = task
+            })
+        })
+    })
 }
 
 export function hideEditTaskForm() {
@@ -67,7 +66,7 @@ export function changeTask() {
         if (updatedTitle == null || updatedTitle === '') {
             alert("Enter a title for your task!")
         } else if (updatedTitle.length > 20) {
-            alert("Task title is too long! Maximum characters allowed is 20.");
+            alert("Task title is too long! Maximum characters allowed is 20.")
         } else {
             const newTask = createTask(updatedTitle, updatedDetails, updatedDate)
             const selectedProject = projects.find(project => project.id === selectedProjectId)
@@ -86,5 +85,5 @@ export function changeTask() {
             saveAndRender()
             hideEditTaskForm()
         }
-    });
+    })
 }

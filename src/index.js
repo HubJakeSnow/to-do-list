@@ -34,7 +34,6 @@ export function deleteTask() {
     })
 }
 
-
 createTask()
 showTaskForm()
 editTaskFormFunction()

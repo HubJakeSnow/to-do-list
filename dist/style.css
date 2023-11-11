@@ -27,6 +27,15 @@ body {
       300px minmax(1px, 1fr) minmax(500px, 1000px) minmax(0px, 1fr);
 }
 
+/* Give this class to elements to hide them */
+.hidden {
+    display: none;
+}
+
+.starred {
+    color: #ffb029;
+}
+
 .title-header {
     background-color: rgb(37, 34, 34);
     grid-area: header;
@@ -39,6 +48,7 @@ body {
     color: white;
 }
 
+/* Nav */
 .nav {
     grid-area: nav;
     padding-left: 30px;
@@ -49,7 +59,7 @@ body {
     border: 2px solid var(--clr-dark);
     border-top: none;
     position: relative;
-    padding: 5px;
+    padding: 0px;
 }
 
 .nav-project-header {
@@ -62,7 +72,7 @@ body {
 }
 
 h2.projects-title {
-    margin: 0 0 0 25px;
+    margin: 40px 0 5px 20px;
 }
 
 .project-name {
@@ -73,20 +83,12 @@ h2.projects-title {
     opacity: 0.7;
 }
 
+.permanent-lists {
+    margin-top: 20px;
+}
+
 .project-list {
-    margin-top: 125px;
-}
-
-.btn {
-    cursor: pointer;
-    background: 0;
-    border-radius: 5px;
-}
-
-.btn:hover {
-    opacity: 0.7;
-    background-color: var(--clr-dark);
-    color: var(--clr-blue);
+    margin-top: 0px;
 }
 
 .new {
@@ -98,6 +100,14 @@ h2.projects-title {
     font-size: inherit;
 }
 
+.new-project-form {
+    margin: 10px 5px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 .new.project {
     font-size: 1.1rem;
 }
@@ -106,15 +116,23 @@ h2.projects-title {
     opacity: 0.2;
 }
 
+.add-project {
+    font-weight: 900;
+    align-self: center;
+}
+
 .active-project {
     font-weight: 700;
 }
 
+/*  */
 .todo-list {
     grid-area: active;
     background: var(--clr-light);
     color: var(--clr-dark);
-    min-width: 560px;
+    min-width: 703px;
+    border: 2px solid var(--clr-dark);
+    position: relative;
 }
 
 .todo-header {
@@ -131,38 +149,96 @@ h2.projects-title {
 .todo-body {
     padding: 2rem;
     background-color: var(--clr-light);
-    position: relative;
-    border: 2px solid var(--clr-dark);
     color: white;
     min-width: 703px;
 }
 
+.btn {
+    cursor: pointer;
+    background: 0;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    opacity: 0.7;
+    background-color: var(--clr-dark);
+    color: var(--clr-blue);
+}
+
+/* Bottom three buttons on to-do body */
+.todo-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0.5rem;
+    color: var(--clr-light);
+    opacity: 0.7;
+    transition: color 200ms;
+}
+
+.todo-buttons .btn {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+}
+
+.btn#add:hover {
+    color: green;
+}
+
+.btn#delete:hover {
+    color: red;
+}
+
+/* Form styling */
 .task-form {
     background-color: var(--clr-dark);
     padding: 10px;
     margin: 5px 0px 25px 0px;
 }
 
+.input-field {
+    padding: 5px 10px;
+}
+
 .task-form label {
     font-size: 1.2rem;
     display: block;
-    margin: 0px 0px 2px 0px;
 }
 
-.task-form .todo-input {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 8px;
+.task-form .date-label {
+    margin-top: -7px;
 }
 
 .task-form textarea {
     min-height: 70px;
 }
 
+.task-form .todo-input {
+    width: 100%;
+    padding: 5px;
+}
+
+.task-form .date-input {
+    padding: 5px;
+}
+
+.task-form .todo-input,
+.task-form .date-input {
+    margin: 5px 0px 8px 0px;
+}
+
 .form-buttons {
     display: flex;
     justify-content: space-evenly;
-    margin: 2px;
+    margin-top: 20px;
+}
+
+.submit-button,
+.cancel-button {
+    padding: 5px 8px;
+    min-width: 62px;
 }
 
 .submit-button,
@@ -170,11 +246,13 @@ h2.projects-title {
     cursor: pointer;
 }
 
+/* Task styling */
 .task label {
     display: inline-flex;
     align-items: center;
     position: relative;
     grid-column: 1 / 2;
+    font-size: 22px;
 }
 
 .task {
@@ -182,7 +260,8 @@ h2.projects-title {
     margin-bottom: 1.25em;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 2fr minmax(15px, 1fr) 80px 40px 21px 21px 21px;
+    grid-template-columns: 2fr 100px 27px 24px 21px;
+    column-gap: 15px;
 }
 
 .task::after {
@@ -196,20 +275,34 @@ h2.projects-title {
     opacity: 0.3;
 }
 
-.details-button {
+.task .details-button {
+    grid-column: 2 / 3;
+    margin: 0px 10px;
+    font-size: 14px;
+    width: 80px;
+}
+
+.task-btn {
     cursor: pointer;
+}
+
+.star-task-button {
     grid-column: 3 / 4;
+    grid-row: 1 / 1;
+}
+
+.full-star-task-button {
+    grid-column: 3 / 4;
+    grid-row: 1 / 1;
 }
 
 .edit-task-button {
-    cursor: pointer;
-    grid-column: 5 / 6;
+    grid-column: 4 / 5;
     grid-row: 1 / 1;
 }
 
 .delete-task-button {
-    cursor: pointer;
-    grid-column: 7 / 8;
+    grid-column: 5 / 6;
     grid-row: 1 / 1;
 }
 
@@ -266,34 +359,7 @@ h2.projects-title {
     transform: scaleX(1);
 }
 
-/* Removes underline for the create task button */
-.btn.task::after {
-    display: none;
-}
-
-.todo-buttons {
-    display: flex;
-    justify-content: space-evenly;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 10px;
-    color: var(--clr-light);
-    font-size: 1rem;
-    opacity: 0.7;
-    transition: color 200ms;
-    margin-top: 20px;
-}
-
-.todo-buttons .btn {
-    padding: 5px 10px;
-}
-
-.hidden {
-    display: none;
-}
-
-/* pop-up */
+/* Pop-up */
 .popup {
     position: fixed;
     top: 50%;
@@ -301,9 +367,9 @@ h2.projects-title {
     transform: translate(-50%, -50%) scale(0);
     transition: 200ms ease-in-out;
     border: 1px solid black;
-    border-radius: 10px;
+    border-radius: 20px;
     z-index: 10;
-    background-color: white;
+    background-color: var(--clr-dark);
     width: 500px;
     max-width: 80%;
     color: black;
@@ -335,15 +401,23 @@ h2.projects-title {
     font-weight: bold;
 }
   
-.popup-body {
+.popup .popup-body {
     padding: 10px 15px;
     font-size: 1.25rem;
+    background-color: var(--clr-light);
 }
 
-.popup-date {
+.date-container {
     border-top: 1px solid black;
     padding: 10px 15px;
     font-size: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-date-key {
+    font-style: italic;
+    color: black;
 }
   
 #overlay {

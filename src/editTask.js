@@ -66,7 +66,7 @@ export function changeTask() {
         if (updatedTitle == null || updatedTitle === '') {
             alert("Enter a title for your task!")
         } else if (updatedTitle.length > 20) {
-            alert("Task title is too long! Maximum characters allowed is 20.")
+            alert("Task title is too long! Maximum title should be 20 characters.")
         } else {
             const newTask = createTask(updatedTitle, updatedDetails, updatedDate)
             const selectedProject = projects.find(project => project.id === selectedProjectId)

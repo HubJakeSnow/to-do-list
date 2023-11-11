@@ -1,5 +1,5 @@
 // render.js
-import { projectsContainer, projectDisplayContainer, projectTitle, tasksContainer, taskTemplate } from "./domManip.js"
+import { projectsContainer, projectDisplayContainer, projectTitle, tasksContainer, taskTemplate, addTaskButton, deleteProjectButton } from "./domManip.js"
 import { projects, selectedProjectId } from "./storage.js"
 import { clearElement } from "./clearElement.js"
 
@@ -21,6 +21,9 @@ export function render() {
 
 function renderProjects() {
     projects.forEach(project => {
+        addTaskButton.classList.remove("hidden")
+        deleteProjectButton.classList.remove("hidden")
+
         const projectElement = document.createElement('li')
         projectElement.dataset.projectId = project.id
         projectElement.classList.add("project-name")
@@ -32,7 +35,7 @@ function renderProjects() {
     })
 }
 
-function renderTasks(selectedProject) {
+export function renderTasks(selectedProject) {
     selectedProject.tasks.forEach(task => {
         const taskElement = document.importNode(taskTemplate.content, true)
         const checkbox = taskElement.querySelector('input')
@@ -49,6 +52,6 @@ function renderTasks(selectedProject) {
         dateLabel.classList.add("hidden")
         dateLabel.append(task.date)
         
-        tasksContainer.appendChild(taskElement);
+        tasksContainer.appendChild(taskElement)
     })
 }

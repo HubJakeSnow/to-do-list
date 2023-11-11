@@ -1,5 +1,5 @@
 // taskCreation.js
-import { tasksContainer, taskForm, taskTitle, taskDetails, cancelTaskButton, submitTaskButton, addTaskButton, editTaskForm } from "./domManip.js"
+import { tasksContainer, taskForm, taskTitle, taskDetails, cancelTaskButton, submitTaskButton, addTaskButton, editTaskForm, taskDate } from "./domManip.js"
 import { projects, selectedProjectId, saveAndRender } from "./storage.js"
 import { openPopup } from "./popup.js"
 
@@ -23,18 +23,19 @@ export function addNewTask() {
         e.preventDefault()
         let title = taskTitle.value
         let details = taskDetails.value
-        let date = document.getElementById('listInputDate').value
+        let date = taskDate.value
 
         if (title == null || title === '') {
             alert("Enter a title for your new task!")
         } else if (title.length > 20) {
-            alert("Task title is too long! Maximum characters allowed is 20.")
+            alert("Task title is too long! Maximum title should be 20 characters.")
         } else {
             const task = createTask(title, details, date)
             const selectedProject = projects.find(project => project.id === selectedProjectId)
             selectedProject.tasks.push(task)
             taskDetails.value = null
             taskTitle.value = null
+            taskDate.value = null
             saveAndRender()
             hideTaskForm()
     
@@ -53,5 +54,5 @@ tasksContainer.addEventListener('click', e => {
 })
 
 export function createTask(title, details, date) {
-    return { id: Date.now().toString(), title: title, details: details, date: date, complete: false }
+    return { id: Date.now().toString(), title: title, details: details, date: date, complete: false, starred: false }
 }

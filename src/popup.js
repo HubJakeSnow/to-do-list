@@ -14,26 +14,32 @@ export function openPopup(popup, title, body, date) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const openPopupButtons = document.querySelectorAll('[data-popup-target]');
+    const openPopupButtons = document.querySelectorAll('[data-popup-target]')
 
     openPopupButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Find the parent task element of the clicked button
+
             const task = button.closest('.task')
 
-            // Get the details content from the task
             const detailsDiv = task.querySelector('[data-details-space]')
-            const body = detailsDiv.textContent
+            const body = detailsDiv.textContent;
 
-            // Get the task title
             const taskTitle = task.querySelector('label').textContent
 
-            // Get the task date
             const dateDiv = task.querySelector('[data-date-space]')
             const date = dateDiv.textContent
 
-            // Open the popup with the task title, details, and date on task creation
-            openPopup(popup, taskTitle, body, date)
+            const dateKey = document.querySelector('[data-date-key]')
+
+            if (date == null || date === '') {
+                if (dateKey) {
+                    dateKey.textContent = "No task date"
+                }
+                openPopup(popup, taskTitle, body, date)
+            } else {
+                dateKey.textContent = "(yyyy-mm-dd)"
+                openPopup(popup, taskTitle, body, date)
+            }
         })
     })
 })

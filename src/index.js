@@ -6,6 +6,7 @@ import { showTaskForm, createTask, addNewTask } from "./taskCreation.js"
 import { createProject } from "./projectCreation.js"
 import { editTaskFormFunction, changeTask, hideEditTaskForm } from "./editTask.js"
 import { format } from "date-fns"
+import { toggleStar } from "./starred.js"
 
 clearCompletedTasksButton.addEventListener('click', e => {
     const selectedProject = projects.find(project => project.id === selectedProjectId)
@@ -34,6 +35,9 @@ export function deleteTask() {
     })
 }
 
+// EL to hide add/edit task forms on other page actions
+
+
 createTask()
 showTaskForm()
 editTaskFormFunction()
@@ -43,3 +47,4 @@ addNewTask()
 createProject()
 saveAndRender()
 deleteTask()
+toggleStar()
